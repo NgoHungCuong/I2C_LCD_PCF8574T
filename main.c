@@ -14,6 +14,15 @@
 #include "systick.h"
 #include "I2C_LCD.h"
 
+/**
+ * If you not use puts, cls... from stdio.h
+ * you should use standard interface from stdio.h
+ * for easy to understand source.
+ */
+#define puts KT_I2C_LCD_Puts
+#define cls KT_I2C_LCD_Clear
+#define putln KT_I2C_LCD_NewLine
+
 /* Private functions ---------------------------------------------------------*/
 /**
   * @brief  Configure the GPIO ports.
@@ -74,9 +83,9 @@ int main(void)
     LED_config();
 	
 	KT_I2C_LCD_Init();
-	KT_I2C_LCD_Puts("(Ngo Hung Cuong)");
-	KT_I2C_LCD_NewLine();
-	KT_I2C_LCD_Puts("Electronics :-)");
+	puts("(Ngo Hung Cuong)");
+	putln();
+	puts("Electronics :-)");
 	u8Bl=1;
 	KT_I2C_LCD_BackLight(1);
     while (1)
@@ -88,18 +97,18 @@ int main(void)
 				if(u8LedState) {
 					u8LedState=0;
 					GPIO_ResetBits(GPIOC, GPIO_PIN_13);
-					KT_I2C_LCD_Clear();
-					KT_I2C_LCD_Puts("Ngo Hung Cuong");
-					KT_I2C_LCD_NewLine();
-					KT_I2C_LCD_Puts("Led is ON");
+					cls();
+					puts("Ngo Hung Cuong");
+					putln();
+					puts("Led is ON");
 					
 				} else {
 					u8LedState=1;
 					GPIO_SetBits(GPIOC, GPIO_PIN_13);
-					KT_I2C_LCD_Clear();
-					KT_I2C_LCD_Puts("Electronics");
-					KT_I2C_LCD_NewLine();
-					KT_I2C_LCD_Puts("Led is OFF");
+					cls();
+					puts("Electronics");
+					putln();
+					puts("Led is OFF");
 				}
 			}
 		}
