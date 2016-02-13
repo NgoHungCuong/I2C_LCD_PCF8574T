@@ -1,0 +1,779 @@
+
+I2C_LCD.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000020  00800100  000002e2  00000376  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002e2  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000009  00800120  00800120  00000396  2**0
+                  ALLOC
+  3 .debug_aranges 00000060  00000000  00000000  00000396  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 00000167  00000000  00000000  000003f6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000003f2  00000000  00000000  0000055d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 000001c8  00000000  00000000  0000094f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   00000714  00000000  00000000  00000b17  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000140  00000000  00000000  0000122c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000001c3  00000000  00000000  0000136c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    0000011d  00000000  00000000  0000152f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	19 c0       	rjmp	.+50     	; 0x34 <__ctors_end>
+   2:	33 c0       	rjmp	.+102    	; 0x6a <__bad_interrupt>
+   4:	32 c0       	rjmp	.+100    	; 0x6a <__bad_interrupt>
+   6:	31 c0       	rjmp	.+98     	; 0x6a <__bad_interrupt>
+   8:	30 c0       	rjmp	.+96     	; 0x6a <__bad_interrupt>
+   a:	2f c0       	rjmp	.+94     	; 0x6a <__bad_interrupt>
+   c:	2e c0       	rjmp	.+92     	; 0x6a <__bad_interrupt>
+   e:	2d c0       	rjmp	.+90     	; 0x6a <__bad_interrupt>
+  10:	2c c0       	rjmp	.+88     	; 0x6a <__bad_interrupt>
+  12:	2b c0       	rjmp	.+86     	; 0x6a <__bad_interrupt>
+  14:	2a c0       	rjmp	.+84     	; 0x6a <__bad_interrupt>
+  16:	29 c0       	rjmp	.+82     	; 0x6a <__bad_interrupt>
+  18:	28 c0       	rjmp	.+80     	; 0x6a <__bad_interrupt>
+  1a:	27 c0       	rjmp	.+78     	; 0x6a <__bad_interrupt>
+  1c:	26 c0       	rjmp	.+76     	; 0x6a <__bad_interrupt>
+  1e:	25 c0       	rjmp	.+74     	; 0x6a <__bad_interrupt>
+  20:	24 c0       	rjmp	.+72     	; 0x6a <__bad_interrupt>
+  22:	23 c0       	rjmp	.+70     	; 0x6a <__bad_interrupt>
+  24:	22 c0       	rjmp	.+68     	; 0x6a <__bad_interrupt>
+  26:	21 c0       	rjmp	.+66     	; 0x6a <__bad_interrupt>
+  28:	20 c0       	rjmp	.+64     	; 0x6a <__bad_interrupt>
+  2a:	1f c0       	rjmp	.+62     	; 0x6a <__bad_interrupt>
+  2c:	1e c0       	rjmp	.+60     	; 0x6a <__bad_interrupt>
+  2e:	1d c0       	rjmp	.+58     	; 0x6a <__bad_interrupt>
+  30:	1c c0       	rjmp	.+56     	; 0x6a <__bad_interrupt>
+  32:	1b c0       	rjmp	.+54     	; 0x6a <__bad_interrupt>
+
+00000034 <__ctors_end>:
+  34:	11 24       	eor	r1, r1
+  36:	1f be       	out	0x3f, r1	; 63
+  38:	cf ef       	ldi	r28, 0xFF	; 255
+  3a:	d2 e0       	ldi	r29, 0x02	; 2
+  3c:	de bf       	out	0x3e, r29	; 62
+  3e:	cd bf       	out	0x3d, r28	; 61
+
+00000040 <__do_copy_data>:
+  40:	11 e0       	ldi	r17, 0x01	; 1
+  42:	a0 e0       	ldi	r26, 0x00	; 0
+  44:	b1 e0       	ldi	r27, 0x01	; 1
+  46:	e2 ee       	ldi	r30, 0xE2	; 226
+  48:	f2 e0       	ldi	r31, 0x02	; 2
+  4a:	02 c0       	rjmp	.+4      	; 0x50 <.do_copy_data_start>
+
+0000004c <.do_copy_data_loop>:
+  4c:	05 90       	lpm	r0, Z+
+  4e:	0d 92       	st	X+, r0
+
+00000050 <.do_copy_data_start>:
+  50:	a0 32       	cpi	r26, 0x20	; 32
+  52:	b1 07       	cpc	r27, r17
+  54:	d9 f7       	brne	.-10     	; 0x4c <.do_copy_data_loop>
+
+00000056 <__do_clear_bss>:
+  56:	11 e0       	ldi	r17, 0x01	; 1
+  58:	a0 e2       	ldi	r26, 0x20	; 32
+  5a:	b1 e0       	ldi	r27, 0x01	; 1
+  5c:	01 c0       	rjmp	.+2      	; 0x60 <.do_clear_bss_start>
+
+0000005e <.do_clear_bss_loop>:
+  5e:	1d 92       	st	X+, r1
+
+00000060 <.do_clear_bss_start>:
+  60:	a9 32       	cpi	r26, 0x29	; 41
+  62:	b1 07       	cpc	r27, r17
+  64:	e1 f7       	brne	.-8      	; 0x5e <.do_clear_bss_loop>
+  66:	32 d1       	rcall	.+612    	; 0x2cc <main>
+  68:	3a c1       	rjmp	.+628    	; 0x2de <_exit>
+
+0000006a <__bad_interrupt>:
+  6a:	ca cf       	rjmp	.-108    	; 0x0 <__vectors>
+
+0000006c <Delay10us>:
+void Delay10us(void) {
+	uint32_t i;
+	for(i=0; i<150; ++i) {
+		
+	}
+}
+  6c:	08 95       	ret
+
+0000006e <FlushVal>:
+
+void FlushVal(void) {
+  6e:	90 91 28 01 	lds	r25, 0x0128
+  72:	e0 e2       	ldi	r30, 0x20	; 32
+  74:	f1 e0       	ldi	r31, 0x01	; 1
+	uint8_t i;
+	for(i=0; i<8; ++i) {
+		u8LcdTmp>>=1;
+  76:	96 95       	lsr	r25
+		if(u8LCD_Buff[i]) {
+  78:	80 81       	ld	r24, Z
+  7a:	81 11       	cpse	r24, r1
+			u8LcdTmp|=0x80;
+  7c:	90 68       	ori	r25, 0x80	; 128
+  7e:	31 96       	adiw	r30, 0x01	; 1
+	}
+}
+
+void FlushVal(void) {
+	uint8_t i;
+	for(i=0; i<8; ++i) {
+  80:	81 e0       	ldi	r24, 0x01	; 1
+  82:	e8 32       	cpi	r30, 0x28	; 40
+  84:	f8 07       	cpc	r31, r24
+  86:	b9 f7       	brne	.-18     	; 0x76 <FlushVal+0x8>
+  88:	90 93 28 01 	sts	0x0128, r25
+		u8LcdTmp>>=1;
+		if(u8LCD_Buff[i]) {
+			u8LcdTmp|=0x80;
+		}
+	}
+	KT_I2C_Start();
+  8c:	0b d1       	rcall	.+534    	; 0x2a4 <KT_I2C_Start>
+	KT_I2C_Write(I2C_LCD_ADDR);
+  8e:	8e e4       	ldi	r24, 0x4E	; 78
+  90:	d9 d0       	rcall	.+434    	; 0x244 <KT_I2C_Write>
+	KT_I2C_Write(u8LcdTmp);
+  92:	80 91 28 01 	lds	r24, 0x0128
+  96:	d6 d0       	rcall	.+428    	; 0x244 <KT_I2C_Write>
+	KT_I2C_Stop();
+  98:	fc d0       	rcall	.+504    	; 0x292 <KT_I2C_Stop>
+}
+  9a:	08 95       	ret
+
+0000009c <KT_I2C_LCD_BackLight>:
+void KT_I2C_LCD_NewLine(void) {
+	KT_I2C_LCD_WriteCmd(0xc0);
+}
+
+void KT_I2C_LCD_BackLight(uint8_t u8BackLight) {
+	if(u8BackLight) {
+  9c:	88 23       	and	r24, r24
+  9e:	21 f0       	breq	.+8      	; 0xa8 <KT_I2C_LCD_BackLight+0xc>
+		u8LCD_Buff[LCD_BL]=1;
+  a0:	81 e0       	ldi	r24, 0x01	; 1
+  a2:	80 93 23 01 	sts	0x0123, r24
+  a6:	02 c0       	rjmp	.+4      	; 0xac <KT_I2C_LCD_BackLight+0x10>
+	} else {
+		u8LCD_Buff[LCD_BL]=0;
+  a8:	10 92 23 01 	sts	0x0123, r1
+	}
+	FlushVal();
+  ac:	e0 df       	rcall	.-64     	; 0x6e <FlushVal>
+}
+  ae:	08 95       	ret
+
+000000b0 <LCD_Write_4bit>:
+	//4 bit can ghi chinh la 4 5 6 7
+	//dau tien gan LCD_E=1
+	//ghi du lieu
+	//sau do gan LCD_E=0
+
+	if(u8Data&0x08) {
+  b0:	28 2f       	mov	r18, r24
+  b2:	83 ff       	sbrs	r24, 3
+  b4:	04 c0       	rjmp	.+8      	; 0xbe <LCD_Write_4bit+0xe>
+		u8LCD_Buff[LCD_D7]=1;
+  b6:	81 e0       	ldi	r24, 0x01	; 1
+  b8:	80 93 27 01 	sts	0x0127, r24
+  bc:	02 c0       	rjmp	.+4      	; 0xc2 <LCD_Write_4bit+0x12>
+	} else {
+		u8LCD_Buff[LCD_D7]=0;
+  be:	10 92 27 01 	sts	0x0127, r1
+	}
+	if(u8Data&0x04) {
+  c2:	22 ff       	sbrs	r18, 2
+  c4:	04 c0       	rjmp	.+8      	; 0xce <LCD_Write_4bit+0x1e>
+		u8LCD_Buff[LCD_D6]=1;
+  c6:	81 e0       	ldi	r24, 0x01	; 1
+  c8:	80 93 26 01 	sts	0x0126, r24
+  cc:	02 c0       	rjmp	.+4      	; 0xd2 <LCD_Write_4bit+0x22>
+	} else {
+		u8LCD_Buff[LCD_D6]=0;
+  ce:	10 92 26 01 	sts	0x0126, r1
+	}
+	if(u8Data&0x02) {
+  d2:	21 ff       	sbrs	r18, 1
+  d4:	04 c0       	rjmp	.+8      	; 0xde <LCD_Write_4bit+0x2e>
+		u8LCD_Buff[LCD_D5]=1;
+  d6:	81 e0       	ldi	r24, 0x01	; 1
+  d8:	80 93 25 01 	sts	0x0125, r24
+  dc:	02 c0       	rjmp	.+4      	; 0xe2 <LCD_Write_4bit+0x32>
+	} else {
+		u8LCD_Buff[LCD_D5]=0;
+  de:	10 92 25 01 	sts	0x0125, r1
+	}
+	if(u8Data&0x01) {
+  e2:	20 ff       	sbrs	r18, 0
+  e4:	04 c0       	rjmp	.+8      	; 0xee <LCD_Write_4bit+0x3e>
+		u8LCD_Buff[LCD_D4]=1;
+  e6:	81 e0       	ldi	r24, 0x01	; 1
+  e8:	80 93 24 01 	sts	0x0124, r24
+  ec:	02 c0       	rjmp	.+4      	; 0xf2 <LCD_Write_4bit+0x42>
+	} else {
+		u8LCD_Buff[LCD_D4]=0;
+  ee:	10 92 24 01 	sts	0x0124, r1
+	}
+	
+	u8LCD_Buff[LCD_EN]=1;
+  f2:	81 e0       	ldi	r24, 0x01	; 1
+  f4:	80 93 22 01 	sts	0x0122, r24
+	FlushVal();	
+  f8:	ba df       	rcall	.-140    	; 0x6e <FlushVal>
+	
+	u8LCD_Buff[LCD_EN]=0;
+  fa:	10 92 22 01 	sts	0x0122, r1
+	FlushVal();
+  fe:	b7 df       	rcall	.-146    	; 0x6e <FlushVal>
+	
+}
+ 100:	08 95       	ret
+
+00000102 <LCD_WaitBusy>:
+
+void LCD_WaitBusy(void) {
+ 102:	0f 93       	push	r16
+ 104:	1f 93       	push	r17
+	char temp;
+	
+	//dau tien ghi tat ca 4 bit thap bang 1
+	u8LCD_Buff[LCD_D4]=u8LCD_Buff[LCD_D5]=u8LCD_Buff[LCD_D6]=u8LCD_Buff[LCD_D7]=1;
+ 106:	11 e0       	ldi	r17, 0x01	; 1
+ 108:	10 93 27 01 	sts	0x0127, r17
+ 10c:	10 93 26 01 	sts	0x0126, r17
+ 110:	10 93 25 01 	sts	0x0125, r17
+ 114:	10 93 24 01 	sts	0x0124, r17
+	FlushVal();
+ 118:	aa df       	rcall	.-172    	; 0x6e <FlushVal>
+	
+	u8LCD_Buff[LCD_RS]=0;
+ 11a:	10 92 20 01 	sts	0x0120, r1
+	FlushVal();
+ 11e:	a7 df       	rcall	.-178    	; 0x6e <FlushVal>
+	
+	u8LCD_Buff[LCD_RW]=1;
+ 120:	10 93 21 01 	sts	0x0121, r17
+	FlushVal();
+ 124:	a4 df       	rcall	.-184    	; 0x6e <FlushVal>
+	do {
+		u8LCD_Buff[LCD_EN]=1;
+ 126:	01 e0       	ldi	r16, 0x01	; 1
+ 128:	00 93 22 01 	sts	0x0122, r16
+		FlushVal();
+ 12c:	a0 df       	rcall	.-192    	; 0x6e <FlushVal>
+		KT_I2C_Start();
+ 12e:	ba d0       	rcall	.+372    	; 0x2a4 <KT_I2C_Start>
+		KT_I2C_Write(I2C_LCD_ADDR+1);
+ 130:	8f e4       	ldi	r24, 0x4F	; 79
+ 132:	88 d0       	rcall	.+272    	; 0x244 <KT_I2C_Write>
+		temp=KT_I2C_Read(1);
+ 134:	81 e0       	ldi	r24, 0x01	; 1
+ 136:	65 d0       	rcall	.+202    	; 0x202 <KT_I2C_Read>
+ 138:	18 2f       	mov	r17, r24
+		KT_I2C_Stop();
+ 13a:	ab d0       	rcall	.+342    	; 0x292 <KT_I2C_Stop>
+		
+		u8LCD_Buff[LCD_EN]=0;
+ 13c:	10 92 22 01 	sts	0x0122, r1
+		FlushVal();
+ 140:	96 df       	rcall	.-212    	; 0x6e <FlushVal>
+		u8LCD_Buff[LCD_EN]=1;
+ 142:	00 93 22 01 	sts	0x0122, r16
+		FlushVal();
+ 146:	93 df       	rcall	.-218    	; 0x6e <FlushVal>
+		u8LCD_Buff[LCD_EN]=0;
+ 148:	10 92 22 01 	sts	0x0122, r1
+		FlushVal();
+ 14c:	90 df       	rcall	.-224    	; 0x6e <FlushVal>
+	}while (temp&0x08);
+ 14e:	13 fd       	sbrc	r17, 3
+ 150:	eb cf       	rjmp	.-42     	; 0x128 <LCD_WaitBusy+0x26>
+}
+ 152:	1f 91       	pop	r17
+ 154:	0f 91       	pop	r16
+ 156:	08 95       	ret
+
+00000158 <LCD_Write_Chr>:
+	
+	LCD_Write_4bit(u8Cmd>>4);
+	LCD_Write_4bit(u8Cmd);
+}
+
+void LCD_Write_Chr(char chr){
+ 158:	1f 93       	push	r17
+ 15a:	18 2f       	mov	r17, r24
+	
+	LCD_WaitBusy();
+ 15c:	d2 df       	rcall	.-92     	; 0x102 <LCD_WaitBusy>
+	u8LCD_Buff[LCD_RS]=1;
+ 15e:	81 e0       	ldi	r24, 0x01	; 1
+ 160:	80 93 20 01 	sts	0x0120, r24
+	FlushVal();
+ 164:	84 df       	rcall	.-248    	; 0x6e <FlushVal>
+	u8LCD_Buff[LCD_RW]=0;
+ 166:	10 92 21 01 	sts	0x0121, r1
+	FlushVal();
+ 16a:	81 df       	rcall	.-254    	; 0x6e <FlushVal>
+	LCD_Write_4bit(chr>>4);
+ 16c:	81 2f       	mov	r24, r17
+ 16e:	82 95       	swap	r24
+ 170:	8f 70       	andi	r24, 0x0F	; 15
+ 172:	9e df       	rcall	.-196    	; 0xb0 <LCD_Write_4bit>
+	LCD_Write_4bit(chr);
+ 174:	81 2f       	mov	r24, r17
+ 176:	9c df       	rcall	.-200    	; 0xb0 <LCD_Write_4bit>
+	
+}
+ 178:	1f 91       	pop	r17
+ 17a:	08 95       	ret
+
+0000017c <KT_I2C_LCD_Puts>:
+
+void KT_I2C_LCD_Puts(char *sz) {
+ 17c:	cf 93       	push	r28
+ 17e:	df 93       	push	r29
+ 180:	ec 01       	movw	r28, r24
+	while(1) {
+		if(*sz) {
+ 182:	88 81       	ld	r24, Y
+ 184:	88 23       	and	r24, r24
+ 186:	19 f0       	breq	.+6      	; 0x18e <KT_I2C_LCD_Puts+0x12>
+			LCD_Write_Chr(*sz++);
+ 188:	21 96       	adiw	r28, 0x01	; 1
+ 18a:	e6 df       	rcall	.-52     	; 0x158 <LCD_Write_Chr>
+ 18c:	fa cf       	rjmp	.-12     	; 0x182 <KT_I2C_LCD_Puts+0x6>
+		} else {
+			break;
+		}
+	}
+}
+ 18e:	df 91       	pop	r29
+ 190:	cf 91       	pop	r28
+ 192:	08 95       	ret
+
+00000194 <KT_I2C_LCD_WriteCmd>:
+		u8LCD_Buff[LCD_EN]=0;
+		FlushVal();
+	}while (temp&0x08);
+}
+
+void KT_I2C_LCD_WriteCmd(uint8_t u8Cmd) {
+ 194:	1f 93       	push	r17
+ 196:	18 2f       	mov	r17, r24
+	
+	LCD_WaitBusy();
+ 198:	b4 df       	rcall	.-152    	; 0x102 <LCD_WaitBusy>
+
+	u8LCD_Buff[LCD_RS]=0;
+ 19a:	10 92 20 01 	sts	0x0120, r1
+	FlushVal();
+ 19e:	67 df       	rcall	.-306    	; 0x6e <FlushVal>
+	
+	u8LCD_Buff[LCD_RW]=0;
+ 1a0:	10 92 21 01 	sts	0x0121, r1
+	FlushVal();
+ 1a4:	64 df       	rcall	.-312    	; 0x6e <FlushVal>
+	
+	LCD_Write_4bit(u8Cmd>>4);
+ 1a6:	81 2f       	mov	r24, r17
+ 1a8:	82 95       	swap	r24
+ 1aa:	8f 70       	andi	r24, 0x0F	; 15
+ 1ac:	81 df       	rcall	.-254    	; 0xb0 <LCD_Write_4bit>
+	LCD_Write_4bit(u8Cmd);
+ 1ae:	81 2f       	mov	r24, r17
+ 1b0:	7f df       	rcall	.-258    	; 0xb0 <LCD_Write_4bit>
+}
+ 1b2:	1f 91       	pop	r17
+ 1b4:	08 95       	ret
+
+000001b6 <KT_I2C_LCD_NewLine>:
+void KT_I2C_LCD_Clear(void) {
+	KT_I2C_LCD_WriteCmd(CLR_SCR);
+}
+
+void KT_I2C_LCD_NewLine(void) {
+	KT_I2C_LCD_WriteCmd(0xc0);
+ 1b6:	80 ec       	ldi	r24, 0xC0	; 192
+ 1b8:	ed df       	rcall	.-38     	; 0x194 <KT_I2C_LCD_WriteCmd>
+}
+ 1ba:	08 95       	ret
+
+000001bc <KT_I2C_LCD_Clear>:
+		}
+	}
+}
+
+void KT_I2C_LCD_Clear(void) {
+	KT_I2C_LCD_WriteCmd(CLR_SCR);
+ 1bc:	81 e0       	ldi	r24, 0x01	; 1
+ 1be:	ea df       	rcall	.-44     	; 0x194 <KT_I2C_LCD_WriteCmd>
+}
+ 1c0:	08 95       	ret
+
+000001c2 <KT_I2C_LCD_Init>:
+		Delay10us();
+		Delay10us();
+		Delay10us();
+	}
+	
+	KT_I2C_Init();
+ 1c2:	79 d0       	rcall	.+242    	; 0x2b6 <KT_I2C_Init>
+ 1c4:	e0 e2       	ldi	r30, 0x20	; 32
+ 1c6:	f1 e0       	ldi	r31, 0x01	; 1
+	
+	for(i=0; i<8; ++i) {
+		u8LCD_Buff[i]=0;
+ 1c8:	11 92       	st	Z+, r1
+		Delay10us();
+	}
+	
+	KT_I2C_Init();
+	
+	for(i=0; i<8; ++i) {
+ 1ca:	81 e0       	ldi	r24, 0x01	; 1
+ 1cc:	e8 32       	cpi	r30, 0x28	; 40
+ 1ce:	f8 07       	cpc	r31, r24
+ 1d0:	d9 f7       	brne	.-10     	; 0x1c8 <KT_I2C_LCD_Init+0x6>
+		u8LCD_Buff[i]=0;
+	}
+	
+	FlushVal();
+ 1d2:	4d df       	rcall	.-358    	; 0x6e <FlushVal>
+	
+	u8LCD_Buff[LCD_RS]=0;
+ 1d4:	10 92 20 01 	sts	0x0120, r1
+	FlushVal();
+ 1d8:	4a df       	rcall	.-364    	; 0x6e <FlushVal>
+	
+	u8LCD_Buff[LCD_RW]=0;
+ 1da:	10 92 21 01 	sts	0x0121, r1
+	FlushVal();
+ 1de:	47 df       	rcall	.-370    	; 0x6e <FlushVal>
+	
+	LCD_Write_4bit(0x03);
+ 1e0:	83 e0       	ldi	r24, 0x03	; 3
+ 1e2:	66 df       	rcall	.-308    	; 0xb0 <LCD_Write_4bit>
+			Delay10us();
+			Delay10us();
+			Delay10us();
+		}
+	}
+	LCD_Write_4bit(0x03);
+ 1e4:	83 e0       	ldi	r24, 0x03	; 3
+ 1e6:	64 df       	rcall	.-312    	; 0xb0 <LCD_Write_4bit>
+		Delay10us();
+		Delay10us();
+		Delay10us();
+		Delay10us();
+	}
+	LCD_Write_4bit(0x03);
+ 1e8:	83 e0       	ldi	r24, 0x03	; 3
+ 1ea:	62 df       	rcall	.-316    	; 0xb0 <LCD_Write_4bit>
+		Delay10us();
+		Delay10us();
+		Delay10us();
+		Delay10us();
+	}
+	LCD_Write_4bit(MODE_4_BIT>>4);
+ 1ec:	82 e0       	ldi	r24, 0x02	; 2
+ 1ee:	60 df       	rcall	.-320    	; 0xb0 <LCD_Write_4bit>
+		Delay10us();
+		Delay10us();
+		Delay10us();
+		Delay10us();
+	}
+	KT_I2C_LCD_WriteCmd(MODE_4_BIT);
+ 1f0:	88 e2       	ldi	r24, 0x28	; 40
+ 1f2:	d0 df       	rcall	.-96     	; 0x194 <KT_I2C_LCD_WriteCmd>
+	KT_I2C_LCD_WriteCmd(DISP_ON);
+ 1f4:	8c e0       	ldi	r24, 0x0C	; 12
+ 1f6:	ce df       	rcall	.-100    	; 0x194 <KT_I2C_LCD_WriteCmd>
+	KT_I2C_LCD_WriteCmd(CURSOR_ON);
+ 1f8:	8e e0       	ldi	r24, 0x0E	; 14
+ 1fa:	cc df       	rcall	.-104    	; 0x194 <KT_I2C_LCD_WriteCmd>
+	KT_I2C_LCD_WriteCmd(CLR_SCR);
+ 1fc:	81 e0       	ldi	r24, 0x01	; 1
+ 1fe:	ca df       	rcall	.-108    	; 0x194 <KT_I2C_LCD_WriteCmd>
+}
+ 200:	08 95       	ret
+
+00000202 <KT_I2C_Read>:
+	SCL_0;
+	Delay10us();
+	return ret;
+}
+
+uint8_t KT_I2C_Read(uint8_t u8Ack) {
+ 202:	ff 92       	push	r15
+ 204:	0f 93       	push	r16
+ 206:	1f 93       	push	r17
+ 208:	f8 2e       	mov	r15, r24
+ 20a:	10 e0       	ldi	r17, 0x00	; 0
+	uint8_t i, ret;
+	for(i=0; i<8; ++i) {
+		ret<<=1;
+ 20c:	00 0f       	add	r16, r16
+		Delay10us();
+ 20e:	2e df       	rcall	.-420    	; 0x6c <Delay10us>
+		SCL_1;
+ 210:	3d 98       	cbi	0x07, 5	; 7
+		Delay10us();
+ 212:	2c df       	rcall	.-424    	; 0x6c <Delay10us>
+		if(SDA_VAL) {
+ 214:	34 99       	sbic	0x06, 4	; 6
+			ret|=0x01;
+ 216:	01 60       	ori	r16, 0x01	; 1
+		}
+		Delay10us();
+ 218:	29 df       	rcall	.-430    	; 0x6c <Delay10us>
+		SCL_0;
+ 21a:	3d 9a       	sbi	0x07, 5	; 7
+		Delay10us();
+ 21c:	27 df       	rcall	.-434    	; 0x6c <Delay10us>
+	return ret;
+}
+
+uint8_t KT_I2C_Read(uint8_t u8Ack) {
+	uint8_t i, ret;
+	for(i=0; i<8; ++i) {
+ 21e:	1f 5f       	subi	r17, 0xFF	; 255
+ 220:	18 30       	cpi	r17, 0x08	; 8
+ 222:	a1 f7       	brne	.-24     	; 0x20c <KT_I2C_Read+0xa>
+		Delay10us();
+		SCL_0;
+		Delay10us();
+	}
+	//kiem tra ack
+	if(u8Ack) {
+ 224:	ff 20       	and	r15, r15
+ 226:	11 f0       	breq	.+4      	; 0x22c <KT_I2C_Read+0x2a>
+		SDA_1;
+ 228:	3c 98       	cbi	0x07, 4	; 7
+ 22a:	01 c0       	rjmp	.+2      	; 0x22e <KT_I2C_Read+0x2c>
+	} else {
+		SDA_0;
+ 22c:	3c 9a       	sbi	0x07, 4	; 7
+	}
+	Delay10us();
+ 22e:	1e df       	rcall	.-452    	; 0x6c <Delay10us>
+	SCL_1;
+ 230:	3d 98       	cbi	0x07, 5	; 7
+	Delay10us();
+ 232:	1c df       	rcall	.-456    	; 0x6c <Delay10us>
+	Delay10us();
+ 234:	1b df       	rcall	.-458    	; 0x6c <Delay10us>
+	SCL_0;
+ 236:	3d 9a       	sbi	0x07, 5	; 7
+	Delay10us();
+ 238:	19 df       	rcall	.-462    	; 0x6c <Delay10us>
+	return ret;
+}
+ 23a:	80 2f       	mov	r24, r16
+ 23c:	1f 91       	pop	r17
+ 23e:	0f 91       	pop	r16
+ 240:	ff 90       	pop	r15
+ 242:	08 95       	ret
+
+00000244 <KT_I2C_Write>:
+	Delay10us();
+	SDA_1;
+	Delay10us();
+}
+
+uint8_t KT_I2C_Write(uint8_t u8Data) {
+ 244:	0f 93       	push	r16
+ 246:	1f 93       	push	r17
+ 248:	18 2f       	mov	r17, r24
+ 24a:	00 e0       	ldi	r16, 0x00	; 0
+	uint8_t i, ret;
+	for(i=0; i<8; ++i) {
+		if(u8Data&0x80) {
+ 24c:	17 ff       	sbrs	r17, 7
+ 24e:	02 c0       	rjmp	.+4      	; 0x254 <KT_I2C_Write+0x10>
+			SDA_1;
+ 250:	3c 98       	cbi	0x07, 4	; 7
+ 252:	01 c0       	rjmp	.+2      	; 0x256 <KT_I2C_Write+0x12>
+		} else {
+			SDA_0;
+ 254:	3c 9a       	sbi	0x07, 4	; 7
+		}
+		Delay10us();
+ 256:	0a df       	rcall	.-492    	; 0x6c <Delay10us>
+		SCL_1;
+ 258:	3d 98       	cbi	0x07, 5	; 7
+		Delay10us();
+ 25a:	08 df       	rcall	.-496    	; 0x6c <Delay10us>
+		Delay10us();
+ 25c:	07 df       	rcall	.-498    	; 0x6c <Delay10us>
+		SCL_0;
+ 25e:	3d 9a       	sbi	0x07, 5	; 7
+		Delay10us();
+ 260:	05 df       	rcall	.-502    	; 0x6c <Delay10us>
+	Delay10us();
+}
+
+uint8_t KT_I2C_Write(uint8_t u8Data) {
+	uint8_t i, ret;
+	for(i=0; i<8; ++i) {
+ 262:	0f 5f       	subi	r16, 0xFF	; 255
+ 264:	08 30       	cpi	r16, 0x08	; 8
+ 266:	11 f0       	breq	.+4      	; 0x26c <KT_I2C_Write+0x28>
+		SCL_1;
+		Delay10us();
+		Delay10us();
+		SCL_0;
+		Delay10us();
+		u8Data<<=1;
+ 268:	11 0f       	add	r17, r17
+ 26a:	f0 cf       	rjmp	.-32     	; 0x24c <KT_I2C_Write+0x8>
+	}
+	//kiem tra ack
+	SDA_1;
+ 26c:	3c 98       	cbi	0x07, 4	; 7
+	Delay10us();
+ 26e:	fe de       	rcall	.-516    	; 0x6c <Delay10us>
+	SCL_1;
+ 270:	3d 98       	cbi	0x07, 5	; 7
+	Delay10us();
+ 272:	fc de       	rcall	.-520    	; 0x6c <Delay10us>
+	if(SDA_VAL) {
+ 274:	06 b1       	in	r16, 0x06	; 6
+		ret=1;
+	} else {
+		ret=0;
+	}
+	Delay10us();
+ 276:	fa de       	rcall	.-524    	; 0x6c <Delay10us>
+	SCL_0;
+ 278:	3d 9a       	sbi	0x07, 5	; 7
+	Delay10us();
+ 27a:	f8 de       	rcall	.-528    	; 0x6c <Delay10us>
+ 27c:	10 e0       	ldi	r17, 0x00	; 0
+ 27e:	84 e0       	ldi	r24, 0x04	; 4
+ 280:	16 95       	lsr	r17
+ 282:	07 95       	ror	r16
+ 284:	8a 95       	dec	r24
+ 286:	e1 f7       	brne	.-8      	; 0x280 <KT_I2C_Write+0x3c>
+	return ret;
+}
+ 288:	80 2f       	mov	r24, r16
+ 28a:	81 70       	andi	r24, 0x01	; 1
+ 28c:	1f 91       	pop	r17
+ 28e:	0f 91       	pop	r16
+ 290:	08 95       	ret
+
+00000292 <KT_I2C_Stop>:
+	SCL_0;
+	Delay10us();
+}
+
+void KT_I2C_Stop(void) {
+	SCL_0;
+ 292:	3d 9a       	sbi	0x07, 5	; 7
+	Delay10us();
+ 294:	eb de       	rcall	.-554    	; 0x6c <Delay10us>
+	SDA_0;
+ 296:	3c 9a       	sbi	0x07, 4	; 7
+	Delay10us();
+ 298:	e9 de       	rcall	.-558    	; 0x6c <Delay10us>
+	SCL_1;
+ 29a:	3d 98       	cbi	0x07, 5	; 7
+	Delay10us();
+ 29c:	e7 de       	rcall	.-562    	; 0x6c <Delay10us>
+	SDA_1;
+ 29e:	3c 98       	cbi	0x07, 4	; 7
+	Delay10us();
+ 2a0:	e5 de       	rcall	.-566    	; 0x6c <Delay10us>
+}
+ 2a2:	08 95       	ret
+
+000002a4 <KT_I2C_Start>:
+	Delay10us();
+	Delay10us();
+}
+
+void KT_I2C_Start(void) {
+	SDA_1;
+ 2a4:	3c 98       	cbi	0x07, 4	; 7
+	Delay10us();
+ 2a6:	e2 de       	rcall	.-572    	; 0x6c <Delay10us>
+	SCL_1;
+ 2a8:	3d 98       	cbi	0x07, 5	; 7
+	Delay10us();
+ 2aa:	e0 de       	rcall	.-576    	; 0x6c <Delay10us>
+	SDA_0;
+ 2ac:	3c 9a       	sbi	0x07, 4	; 7
+	Delay10us();
+ 2ae:	de de       	rcall	.-580    	; 0x6c <Delay10us>
+	SCL_0;
+ 2b0:	3d 9a       	sbi	0x07, 5	; 7
+	Delay10us();
+ 2b2:	dc de       	rcall	.-584    	; 0x6c <Delay10us>
+}
+ 2b4:	08 95       	ret
+
+000002b6 <KT_I2C_Init>:
+    //GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_OD;
+
+    //GPIO_Init(GPIOB,&GPIO_InitStructure);
+	//GPIO_Init(GPIOD, GPIO_PIN_4, GPIO_MODE_OUT_OD_LOW_FAST);
+	//GPIO_Init(GPIOD, GPIO_PIN_5, GPIO_MODE_OUT_OD_LOW_FAST);
+	DDRC&=0xCF;
+ 2b6:	87 b1       	in	r24, 0x07	; 7
+ 2b8:	8f 7c       	andi	r24, 0xCF	; 207
+ 2ba:	87 b9       	out	0x07, r24	; 7
+	PORTC&=0xCF;
+ 2bc:	88 b1       	in	r24, 0x08	; 8
+ 2be:	8f 7c       	andi	r24, 0xCF	; 207
+ 2c0:	88 b9       	out	0x08, r24	; 8
+
+	SDA_1;
+ 2c2:	3c 98       	cbi	0x07, 4	; 7
+	SCL_1;
+ 2c4:	3d 98       	cbi	0x07, 5	; 7
+	Delay10us();
+ 2c6:	d2 de       	rcall	.-604    	; 0x6c <Delay10us>
+	Delay10us();
+ 2c8:	d1 de       	rcall	.-606    	; 0x6c <Delay10us>
+}
+ 2ca:	08 95       	ret
+
+000002cc <main>:
+#include <avr/io.h>
+#include "I2C_LCD.h"
+
+int main() {
+	
+	KT_I2C_LCD_Init();
+ 2cc:	7a df       	rcall	.-268    	; 0x1c2 <KT_I2C_LCD_Init>
+	
+	KT_I2C_LCD_Puts("I2C LCD ATmega48");
+ 2ce:	80 e0       	ldi	r24, 0x00	; 0
+ 2d0:	91 e0       	ldi	r25, 0x01	; 1
+ 2d2:	54 df       	rcall	.-344    	; 0x17c <KT_I2C_LCD_Puts>
+	KT_I2C_LCD_NewLine();
+ 2d4:	70 df       	rcall	.-288    	; 0x1b6 <KT_I2C_LCD_NewLine>
+	KT_I2C_LCD_Puts("Ngo Hung Cuong");
+ 2d6:	81 e1       	ldi	r24, 0x11	; 17
+ 2d8:	91 e0       	ldi	r25, 0x01	; 1
+ 2da:	50 df       	rcall	.-352    	; 0x17c <KT_I2C_LCD_Puts>
+ 2dc:	ff cf       	rjmp	.-2      	; 0x2dc <main+0x10>
+
+000002de <_exit>:
+ 2de:	f8 94       	cli
+
+000002e0 <__stop_program>:
+ 2e0:	ff cf       	rjmp	.-2      	; 0x2e0 <__stop_program>
