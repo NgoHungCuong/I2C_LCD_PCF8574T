@@ -1,0 +1,278 @@
+C51 COMPILER V9.01   I2C_LCD                                                               02/13/2016 11:40:00 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE I2C_LCD
+OBJECT MODULE PLACED IN .\Out\I2C_LCD.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Lib\I2C_LCD.c BROWSE INCDIR(.\Lib;.\User) DEBUG OBJECTEXTEND PRINT(.\Lst\I2
+                    -C_LCD.lst) OBJECT(.\Out\I2C_LCD.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          #define uint8_t unsigned char
+   4          #define uint32_t unsigned long
+   5          
+   6          #include "i2c_lcd_hw_cfg.h"
+   7          #include "soft_i2c.h"
+   8          
+   9          static uint8_t u8LCD_Buff[8];//bo nho dem luu lai toan bo
+  10          static uint8_t u8LcdTmp;
+  11          
+  12          #define MODE_4_BIT              0x28
+  13          #define CLR_SCR                 0x01
+  14          #define DISP_ON                 0x0C
+  15          #define CURSOR_ON               0x0E
+  16          #define CURSOR_HOME             0x80
+  17          
+  18          void LCD_Write_4bit(uint8_t u8Data);
+  19          void FlushVal(void);
+  20          void KT_I2C_LCD_WriteCmd(uint8_t u8Cmd);
+  21          
+  22          void Delay10us(void) {
+  23   1              uint8_t i;
+  24   1              /*
+  25   1              for(i=0; i<150; ++i) {
+  26   1                      
+  27   1              }
+  28   1              */
+  29   1      }
+*** WARNING C280 IN LINE 23 OF LIB\I2C_LCD.C: 'i': unreferenced local variable
+  30          
+  31          void FlushVal(void) {
+  32   1              uint8_t i;
+  33   1              for(i=0; i<8; ++i) {
+  34   2                      u8LcdTmp>>=1;
+  35   2                      if(u8LCD_Buff[i]) {
+  36   3                              u8LcdTmp|=0x80;
+  37   3                      }
+  38   2              }
+  39   1              KT_I2C_Start();
+  40   1              KT_I2C_Write(I2C_LCD_ADDR);
+  41   1              KT_I2C_Write(u8LcdTmp);
+  42   1              KT_I2C_Stop();
+  43   1      }
+  44          
+  45          void KT_I2C_LCD_Init(void) {
+  46   1              uint8_t i, j;
+  47   1              
+  48   1              for(i=0; i<100; ++i) {
+  49   2                      Delay10us();
+  50   2                      Delay10us();
+  51   2                      Delay10us();
+  52   2                      Delay10us();
+  53   2                      Delay10us();
+C51 COMPILER V9.01   I2C_LCD                                                               02/13/2016 11:40:00 PAGE 2   
+
+  54   2                      Delay10us();
+  55   2                      Delay10us();
+  56   2                      Delay10us();
+  57   2                      Delay10us();
+  58   2              }
+  59   1              
+  60   1              KT_I2C_Init();
+  61   1              
+  62   1              for(i=0; i<8; ++i) {
+  63   2                      u8LCD_Buff[i]=0;
+  64   2              }
+  65   1              
+  66   1              FlushVal();
+  67   1              
+  68   1              u8LCD_Buff[LCD_RS]=0;
+  69   1              FlushVal();
+  70   1              
+  71   1              u8LCD_Buff[LCD_RW]=0;
+  72   1              FlushVal();
+  73   1              
+  74   1              LCD_Write_4bit(0x03);
+  75   1              for(i=0; i<100; ++i) {
+  76   2                      for(j=0; j<40; ++j) {
+  77   3                              Delay10us();
+  78   3                              Delay10us();
+  79   3                              Delay10us();
+  80   3                              Delay10us();
+  81   3                              Delay10us();
+  82   3                              Delay10us();
+  83   3                              Delay10us();
+  84   3                              Delay10us();
+  85   3                              Delay10us();
+  86   3                      }
+  87   2              }
+  88   1              LCD_Write_4bit(0x03);
+  89   1              for(i=0; i<10; ++i) {
+  90   2                      Delay10us();
+  91   2                      Delay10us();
+  92   2                      Delay10us();
+  93   2                      Delay10us();
+  94   2                      Delay10us();
+  95   2                      Delay10us();
+  96   2                      Delay10us();
+  97   2                      Delay10us();
+  98   2                      Delay10us();
+  99   2              }
+ 100   1              LCD_Write_4bit(0x03);
+ 101   1              for(i=0; i<10; ++i) {
+ 102   2                      Delay10us();
+ 103   2                      Delay10us();
+ 104   2                      Delay10us();
+ 105   2                      Delay10us();
+ 106   2                      Delay10us();
+ 107   2                      Delay10us();
+ 108   2                      Delay10us();
+ 109   2                      Delay10us();
+ 110   2                      Delay10us();
+ 111   2              }
+ 112   1              LCD_Write_4bit(MODE_4_BIT>>4);
+ 113   1              for(i=0; i<10; ++i) {
+ 114   2                      Delay10us();
+ 115   2                      Delay10us();
+C51 COMPILER V9.01   I2C_LCD                                                               02/13/2016 11:40:00 PAGE 3   
+
+ 116   2                      Delay10us();
+ 117   2                      Delay10us();
+ 118   2                      Delay10us();
+ 119   2                      Delay10us();
+ 120   2                      Delay10us();
+ 121   2                      Delay10us();
+ 122   2                      Delay10us();
+ 123   2              }
+ 124   1              KT_I2C_LCD_WriteCmd(MODE_4_BIT);
+ 125   1              KT_I2C_LCD_WriteCmd(DISP_ON);
+ 126   1              KT_I2C_LCD_WriteCmd(CURSOR_ON);
+ 127   1              KT_I2C_LCD_WriteCmd(CLR_SCR);
+ 128   1      }
+ 129          
+ 130          void LCD_Write_4bit(uint8_t u8Data) {
+ 131   1              //4 bit can ghi chinh la 4 5 6 7
+ 132   1              //dau tien gan LCD_E=1
+ 133   1              //ghi du lieu
+ 134   1              //sau do gan LCD_E=0
+ 135   1      
+ 136   1              if(u8Data&0x08) {
+ 137   2                      u8LCD_Buff[LCD_D7]=1;
+ 138   2              } else {
+ 139   2                      u8LCD_Buff[LCD_D7]=0;
+ 140   2              }
+ 141   1              if(u8Data&0x04) {
+ 142   2                      u8LCD_Buff[LCD_D6]=1;
+ 143   2              } else {
+ 144   2                      u8LCD_Buff[LCD_D6]=0;
+ 145   2              }
+ 146   1              if(u8Data&0x02) {
+ 147   2                      u8LCD_Buff[LCD_D5]=1;
+ 148   2              } else {
+ 149   2                      u8LCD_Buff[LCD_D5]=0;
+ 150   2              }
+ 151   1              if(u8Data&0x01) {
+ 152   2                      u8LCD_Buff[LCD_D4]=1;
+ 153   2              } else {
+ 154   2                      u8LCD_Buff[LCD_D4]=0;
+ 155   2              }
+ 156   1              
+ 157   1              u8LCD_Buff[LCD_EN]=1;
+ 158   1              FlushVal();     
+ 159   1              
+ 160   1              u8LCD_Buff[LCD_EN]=0;
+ 161   1              FlushVal();
+ 162   1              
+ 163   1      }
+ 164          
+ 165          void LCD_WaitBusy(void) {
+ 166   1              char temp;
+ 167   1              
+ 168   1              //dau tien ghi tat ca 4 bit thap bang 1
+ 169   1              u8LCD_Buff[LCD_D4]=u8LCD_Buff[LCD_D5]=u8LCD_Buff[LCD_D6]=u8LCD_Buff[LCD_D7]=1;
+ 170   1              FlushVal();
+ 171   1              
+ 172   1              u8LCD_Buff[LCD_RS]=0;
+ 173   1              FlushVal();
+ 174   1              
+ 175   1              u8LCD_Buff[LCD_RW]=1;
+ 176   1              FlushVal();
+ 177   1              do {
+C51 COMPILER V9.01   I2C_LCD                                                               02/13/2016 11:40:00 PAGE 4   
+
+ 178   2                      u8LCD_Buff[LCD_EN]=1;
+ 179   2                      FlushVal();
+ 180   2                      KT_I2C_Start();
+ 181   2                      KT_I2C_Write(I2C_LCD_ADDR+1);
+ 182   2                      temp=KT_I2C_Read(1);
+ 183   2                      KT_I2C_Stop();
+ 184   2                      
+ 185   2                      u8LCD_Buff[LCD_EN]=0;
+ 186   2                      FlushVal();
+ 187   2                      u8LCD_Buff[LCD_EN]=1;
+ 188   2                      FlushVal();
+ 189   2                      u8LCD_Buff[LCD_EN]=0;
+ 190   2                      FlushVal();
+ 191   2              }while (temp&0x08);
+ 192   1      }
+ 193          
+ 194          void KT_I2C_LCD_WriteCmd(uint8_t u8Cmd) {
+ 195   1              
+ 196   1              LCD_WaitBusy();
+ 197   1      
+ 198   1              u8LCD_Buff[LCD_RS]=0;
+ 199   1              FlushVal();
+ 200   1              
+ 201   1              u8LCD_Buff[LCD_RW]=0;
+ 202   1              FlushVal();
+ 203   1              
+ 204   1              LCD_Write_4bit(u8Cmd>>4);
+ 205   1              LCD_Write_4bit(u8Cmd);
+ 206   1      }
+ 207          
+ 208          void LCD_Write_Chr(char chr){
+ 209   1              
+ 210   1              LCD_WaitBusy();
+ 211   1              u8LCD_Buff[LCD_RS]=1;
+ 212   1              FlushVal();
+ 213   1              u8LCD_Buff[LCD_RW]=0;
+ 214   1              FlushVal();
+ 215   1              LCD_Write_4bit(chr>>4);
+ 216   1              LCD_Write_4bit(chr);
+ 217   1              
+ 218   1      }
+ 219          
+ 220          void KT_I2C_LCD_Puts(char *sz) {
+ 221   1              while(1) {
+ 222   2                      if(*sz) {
+ 223   3                              LCD_Write_Chr(*sz++);
+ 224   3                      } else {
+ 225   3                              break;
+ 226   3                      }
+ 227   2              }
+ 228   1      }
+ 229          
+ 230          void KT_I2C_LCD_Clear(void) {
+ 231   1              KT_I2C_LCD_WriteCmd(CLR_SCR);
+ 232   1      }
+ 233          
+ 234          void KT_I2C_LCD_NewLine(void) {
+ 235   1              KT_I2C_LCD_WriteCmd(0xc0);
+ 236   1      }
+ 237          
+ 238          void KT_I2C_LCD_BackLight(uint8_t u8BackLight) {
+ 239   1              if(u8BackLight) {
+C51 COMPILER V9.01   I2C_LCD                                                               02/13/2016 11:40:00 PAGE 5   
+
+ 240   2                      u8LCD_Buff[LCD_BL]=1;
+ 241   2              } else {
+ 242   2                      u8LCD_Buff[LCD_BL]=0;
+ 243   2              }
+ 244   1              FlushVal();
+ 245   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    536    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      9       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

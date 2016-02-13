@@ -1,0 +1,138 @@
+C51 COMPILER V9.01   SOFT_I2C                                                              02/13/2016 11:37:44 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE SOFT_I2C
+OBJECT MODULE PLACED IN .\Out\Soft_I2C.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE Lib\Soft_I2C.c BROWSE INCDIR(.\Lib;.\User) DEBUG OBJECTEXTEND PRINT(.\Lst\S
+                    -oft_I2C.lst) OBJECT(.\Out\Soft_I2C.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          #define uint8_t unsigned char
+   4          
+   5          #include "i2c_lcd_hw_cfg.h"
+   6          #include "soft_i2c.h"
+   7          
+   8          void KT_I2C_Init(void) {
+   9   1              //GPIO_InitTypeDef GPIO_InitStructure;
+  10   1              
+  11   1              //RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);
+  12   1      
+  13   1          //GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_6 | GPIO_Pin_7;
+  14   1          //GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  15   1          //GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_Out_OD;
+  16   1      
+  17   1          //GPIO_Init(GPIOB,&GPIO_InitStructure);
+  18   1              //GPIO_Init(GPIOD, GPIO_PIN_4, GPIO_MODE_OUT_OD_LOW_FAST);
+  19   1              //GPIO_Init(GPIOD, GPIO_PIN_5, GPIO_MODE_OUT_OD_LOW_FAST);
+  20   1              //DDRC&=0xCF;
+  21   1              //PORTC&=0xCF;
+  22   1      
+  23   1              SDA_1;
+  24   1              SCL_1;
+  25   1              Delay10us();
+  26   1              Delay10us();
+  27   1      }
+  28          
+  29          void KT_I2C_Start(void) {
+  30   1              SDA_1;
+  31   1              Delay10us();
+  32   1              SCL_1;
+  33   1              Delay10us();
+  34   1              SDA_0;
+  35   1              Delay10us();
+  36   1              SCL_0;
+  37   1              Delay10us();
+  38   1      }
+  39          
+  40          void KT_I2C_Stop(void) {
+  41   1              SCL_0;
+  42   1              Delay10us();
+  43   1              SDA_0;
+  44   1              Delay10us();
+  45   1              SCL_1;
+  46   1              Delay10us();
+  47   1              SDA_1;
+  48   1              Delay10us();
+  49   1      }
+  50          
+  51          uint8_t KT_I2C_Write(uint8_t u8Data) {
+  52   1              uint8_t i, ret;
+  53   1              for(i=0; i<8; ++i) {
+  54   2                      if(u8Data&0x80) {
+C51 COMPILER V9.01   SOFT_I2C                                                              02/13/2016 11:37:44 PAGE 2   
+
+  55   3                              SDA_1;
+  56   3                      } else {
+  57   3                              SDA_0;
+  58   3                      }
+  59   2                      Delay10us();
+  60   2                      SCL_1;
+  61   2                      Delay10us();
+  62   2                      Delay10us();
+  63   2                      SCL_0;
+  64   2                      Delay10us();
+  65   2                      u8Data<<=1;
+  66   2              }
+  67   1              //kiem tra ack
+  68   1              SDA_1;
+  69   1              Delay10us();
+  70   1              SCL_1;
+  71   1              Delay10us();
+  72   1              if(SDA_VAL) {
+  73   2                      ret=1;
+  74   2              } else {
+  75   2                      ret=0;
+  76   2              }
+  77   1              Delay10us();
+  78   1              SCL_0;
+  79   1              Delay10us();
+  80   1              return ret;
+  81   1      }
+  82          
+  83          uint8_t KT_I2C_Read(uint8_t u8Ack) {
+  84   1              uint8_t i, ret;
+  85   1              for(i=0; i<8; ++i) {
+  86   2                      ret<<=1;
+  87   2                      Delay10us();
+  88   2                      SCL_1;
+  89   2                      Delay10us();
+  90   2                      if(SDA_VAL) {
+  91   3                              ret|=0x01;
+  92   3                      }
+  93   2                      Delay10us();
+  94   2                      SCL_0;
+  95   2                      Delay10us();
+  96   2              }
+  97   1              //kiem tra ack
+  98   1              if(u8Ack) {
+  99   2                      SDA_1;
+ 100   2              } else {
+ 101   2                      SDA_0;
+ 102   2              }
+ 103   1              Delay10us();
+ 104   1              SCL_1;
+ 105   1              Delay10us();
+ 106   1              Delay10us();
+ 107   1              SCL_0;
+ 108   1              Delay10us();
+ 109   1              return ret;
+ 110   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    200    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   SOFT_I2C                                                              02/13/2016 11:37:44 PAGE 3   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

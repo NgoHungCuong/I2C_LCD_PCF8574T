@@ -1,0 +1,5 @@
+".\Out\main.obj",
+".\Out\I2C_LCD.obj",
+".\Out\Soft_I2C.obj" 
+TO ".\Out\Template" 
+PRINT(".\Lst\Template.m51") RAMSIZE(256) 

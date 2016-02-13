@@ -1,0 +1,42 @@
+C51 COMPILER V9.01   MAIN                                                                  02/13/2016 11:40:44 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Out\main.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE User\main.c BROWSE INCDIR(.\Lib;.\User) DEBUG OBJECTEXTEND PRINT(.\Lst\main
+                    -.lst) OBJECT(.\Out\main.obj)
+
+line level    source
+
+   1          #include <regx52.h>
+   2          
+   3          #define uint8_t unsigned char
+   4          
+   5          #include "I2C_LCD.h"
+   6          
+   7          void main(void) {
+   8   1              
+   9   1              KT_I2C_LCD_Init();
+  10   1              
+  11   1              KT_I2C_LCD_Puts("I2C LCD AT89S52");
+  12   1              KT_I2C_LCD_NewLine();
+  13   1              KT_I2C_LCD_Puts("Ngo Hung Cuong");
+  14   1              
+  15   1              while(1) {
+  16   2                      
+  17   2              }
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     26    ----
+   CONSTANT SIZE    =     31    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

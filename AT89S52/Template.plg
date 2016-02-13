@@ -1,0 +1,13 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\8051\Template_MDK4\Template.uvproj
+Project File Date:  02/13/2016
+
+<h2>Output:</h2>
+Rebuild target 'Template'
+compiling main.c...
+--- Error: failed to execute 'C:\Keil\C51\BIN\C51.EXE'
+Target not created

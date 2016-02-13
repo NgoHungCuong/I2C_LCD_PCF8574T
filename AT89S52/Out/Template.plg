@@ -1,0 +1,159 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\8051\I2C LCD\Template.uvproj
+Project File Date:  02/13/2016
+
+<h2>Output:</h2>
+Rebuild target 'Template'
+compiling main.c...
+compiling I2C_LCD.c...
+LIB\SOFT_I2C.H(5): error C129: missing ';' before 'KT_I2C_Write'
+compiling Soft_I2C.c...
+LIB\SOFT_I2C.H(5): error C129: missing ';' before 'KT_I2C_Write'
+Target not created
+Rebuild target 'Template'
+compiling main.c...
+compiling I2C_LCD.c...
+LIB\I2C_LCD.C(22): error C202: 'uint32_t': undefined identifier
+LIB\I2C_LCD.C(22): error C141: syntax error near 'i'
+LIB\I2C_LCD.C(23): error C202: 'i': undefined identifier
+compiling Soft_I2C.c...
+LIB\SOFT_I2C.C(20): error C202: 'DDRC': undefined identifier
+LIB\SOFT_I2C.C(21): error C202: 'PORTC': undefined identifier
+Target not created
+Rebuild target 'Template'
+compiling main.c...
+compiling I2C_LCD.c...
+compiling Soft_I2C.c...
+LIB\SOFT_I2C.C(20): error C202: 'DDRC': undefined identifier
+LIB\SOFT_I2C.C(21): error C202: 'PORTC': undefined identifier
+Target not created
+Rebuild target 'Template'
+compiling main.c...
+compiling I2C_LCD.c...
+compiling Soft_I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_INIT?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_PUTS?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_NEWLINE?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=40.0 xdata=0 code=983
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 5 Warning(s).
+Rebuild target 'Template'
+compiling main.c...
+.\LIB\I2C_LCD.H(4): error C141: syntax error near 'u8Cmd', expected ')'
+.\LIB\I2C_LCD.H(8): error C141: syntax error near 'u8BackLight', expected ')'
+compiling I2C_LCD.c...
+compiling Soft_I2C.c...
+Target not created
+Rebuild target 'Template'
+compiling main.c...
+compiling I2C_LCD.c...
+compiling Soft_I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=30.0 xdata=0 code=947
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
+Build target 'Template'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=30.0 xdata=0 code=947
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
+Build target 'Template'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=30.0 xdata=0 code=947
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
+Build target 'Template'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=30.0 xdata=0 code=947
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
+Build target 'Template'
+compiling I2C_LCD.c...
+compiling Soft_I2C.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=30.0 xdata=0 code=947
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
+Build target 'Template'
+compiling I2C_LCD.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=26.0 xdata=0 code=744
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
+Build target 'Template'
+compiling I2C_LCD.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=26.0 xdata=0 code=744
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
+Build target 'Template'
+compiling I2C_LCD.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=26.0 xdata=0 code=744
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
+Build target 'Template'
+compiling I2C_LCD.c...
+LIB\I2C_LCD.C(23): warning C280: 'i': unreferenced local variable
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=27.0 xdata=0 code=834
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 3 Warning(s).
+Build target 'Template'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?KT_I2C_LCD_CLEAR?I2C_LCD
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_KT_I2C_LCD_BACKLIGHT?I2C_LCD
+Program Size: data=27.0 xdata=0 code=833
+creating hex file from ".\Out\Template"...
+".\Out\Template" - 0 Error(s), 2 Warning(s).
